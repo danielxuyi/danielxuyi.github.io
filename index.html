@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Daniel Yi Xu</title>
+  <meta name="description" content="Research page of Daniel Yi Xu — International Trade, Industrial Organization, Development, and Environmental/Energy policy." />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --line: rgba(255,255,255,.14);
+      --accent: #7c5cff;
+      --accent2: #2ee6a6;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg: #f6f7fb;
+        --panel: rgba(0,0,0,.04);
+        --panel2: rgba(0,0,0,.06);
+        --text: rgba(0,0,0,.90);
+        --muted: rgba(0,0,0,.62);
+        --line: rgba(0,0,0,.10);
+        --shadow: 0 10px 30px rgba(0,0,0,.10);
+      }
+    }
+
+    *{ box-sizing: border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(900px 520px at 20% 10%, rgba(124,92,255,.22), rgba(0,0,0,0) 60%),
+        radial-gradient(900px 520px at 85% 0%, rgba(46,230,166,.16), rgba(0,0,0,0) 55%),
+        var(--bg);
+      line-height: 1.55;
+    }
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-decoration-color: rgba(124,92,255,.7); }
+    .container{
+      width:min(1040px, calc(100% - 40px));
+      margin: 28px auto 64px;
+    }
+
+    /* Top nav */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--panel2), var(--panel));
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 14px;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 220px;
+    }
+    .dot{
+      width: 12px; height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(124,92,255,.14);
+    }
+    .brand strong{ font-weight: 720; letter-spacing: .2px; }
+    .brand span{ color: var(--muted); font-size: 0.95rem; }
+
+    .nav{
+      display:flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .pill{
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.03);
+      font-size: .95rem;
+      color: var(--muted);
+      transition: transform .06s ease, background .2s ease;
+    }
+    .pill:hover{ background: rgba(124,92,255,.12); color: var(--text); text-decoration:none; }
+    .pill:active{ transform: translateY(1px); }
+
+    /* Hero */
+    .hero{
+      margin-top: 18px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--panel2), var(--panel));
+      box-shadow: var(--shadow);
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 860px){
+      .hero-grid{ grid-template-columns: 1fr; }
+    }
+    h1{
+      margin: 0 0 6px;
+      font-size: clamp(1.9rem, 2.6vw, 2.4rem);
+      line-height: 1.15;
+      letter-spacing: .2px;
+    }
+    .cn{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+    .lead{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 1.02rem;
+    }
+    .badges{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .badge{
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: .92rem;
+      white-space: nowrap;
+    }
+    .card{
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      padding: 14px;
+    }
+    .card h3{
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+      letter-spacing: .2px;
+    }
+    .klist{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .klist li{ margin: 6px 0; }
+
+    /* Sections */
+    section{ margin-top: 18px; }
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 860px){
+      .grid-2{ grid-template-columns: 1fr; }
+    }
+    .section-title{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 10px;
+    }
+    .section-title h2{
+      margin: 0;
+      font-size: 1.25rem;
+      letter-spacing: .2px;
+    }
+    .section-title .hint{
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .paper{
+      margin: 10px 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .paper a{ text-decoration: none; }
+    .paper a:hover{ text-decoration: underline; }
+    .paper .meta{ color: var(--muted); font-size: .93rem; margin-top: 4px; }
+
+    footer{
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: .95rem;
+      text-align: center;
+    }
+    .sep{ opacity: .5; padding: 0 8px; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="dot" aria-hidden="true"></div>
+        <div>
+          <strong>Daniel Yi Xu</strong><br />
+          <span>International Trade · IO · Development</span>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <!-- Replace these with your new GitHub Pages URLs as you build them -->
+        <a class="pill" href="#research">Research</a>
+        <a class="pill" href="#selected">Selected papers</a>
+        <a class="pill" href="#teaching">Teaching</a>
+        <a class="pill" href="#links">Links</a>
+        <a class="pill" href="mailto:daniel.xu@duke.edu">Email</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="hero">
+        <div class="hero-grid">
+          <div>
+            <h1>Daniel Yi Xu</h1>
+            <div class="cn">徐熠</div>
+
+            <p class="lead">
+              David Rubenstein Distinguished Professor of Economics, Duke University.
+              Research Associate at NBER; Research Fellow at CEPR (Climate Change &amp; Environment);
+              senior fellow at ABFER; research affiliate with IGC.
+            </p>
+
+            <p class="lead">
+              Co-editor, <em>American Economic Journal: Micro</em>. Associate editor, <em>RAND Journal of Economics</em>.
+              Previously edited <em>Review of Economics and Statistics</em> (2021–2024) and <em>Journal of Development Economics</em> (2018–2021).
+            </p>
+
+            <div class="badges" aria-label="Research areas">
+              <span class="badge">International Trade</span>
+              <span class="badge">Industrial Organization</span>
+              <span class="badge">Development</span>
+              <span class="badge">Environmental &amp; Energy Regulation</span>
+              <span class="badge">Green Industrial Policy &amp; Offset Markets</span>
+            </div>
+          </div>
+
+          <aside class="card">
+            <h3>Quick links</h3>
+            <ul class="klist">
+              <li><a href="https://www.dropbox.com/" target="_blank" rel="noopener">CV (Dropbox link)</a></li>
+              <li><a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a></li>
+              <li><a href="https://chinaeconlab.org" target="_blank" rel="noopener">China Econ Lab</a></li>
+              <li><a href="https://www.dropbox.com/" target="_blank" rel="noopener">EARIE lecture (methods summary)</a></li>
+              <li><a href="https://www.dropbox.com/" target="_blank" rel="noopener">IIOC/CCER lecture (industrial policy)</a></li>
+            </ul>
+            <p class="lead" style="margin: 12px 0 0;">
+              Contact: <a href="mailto:daniel.xu@duke.edu">daniel.xu@duke.edu</a>
+            </p>
+          </aside>
+        </div>
+      </div>
+
+      <section id="research">
+        <div class="section-title">
+          <h2>Research overview</h2>
+          <div class="hint">Structured IO / quantitative trade + credible policy variation</div>
+        </div>
+        <div class="card">
+          <p class="lead" style="margin:0;">
+            My research lies at the intersection of International Trade, Industrial Organization, and Development.
+            I use large-scale microdata to model and estimate (often dynamic) firm decisions and study how these choices
+            shape resource allocation, industry performance, and growth—especially in developing and emerging economies.
+          </p>
+          <p class="lead" style="margin:12px 0 0;">
+            I am interested in methodologies combining structural IO / quantitative trade with quasi-random policy variation and field experiments.
+            More recently, I study the role of firms in environmental and energy regulation, green industrial policy, and offset markets.
+          </p>
+        </div>
+      </section>
+
+      <section id="selected">
+        <div class="section-title">
+          <h2>Selected papers by theme</h2>
+          <div class="hint">Keep this short; link out for full lists</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Environmental regulation &amp; productivity</h3>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>The Geographic Leakages of Environmental Regulations: Evidence from the Clean Air Act</strong></a>
+              <div class="meta">March 2025 · with M. Curtis, W. Miao, F. Soliman, and J.C. Suárez Serrato</div>
+            </div>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>Regulating Conglomerates: Evidence from an Energy Conservation Program in China</strong></a>
+              <div class="meta">AER (Feb 2025) · with Q. Chen, Z. Chen, Z. Liu, and J.C. Suárez Serrato</div>
+            </div>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>Firm Selection and Growth in Carbon Offset Markets: Evidence from the CDM in China</strong></a>
+              <div class="meta">March 2025 · R&amp;R at AER · with Q. Chen and N. Ryan</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Trade war &amp; production networks</h3>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>Who Pays for Tariffs Along the Supply Chain</strong></a>
+              <div class="meta">Oct 2025 · with A. Flaaen, A. Hortaçsu, F. Tintelnot, and N. Urdaneta</div>
+            </div>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>Strategic Avoidance and the Welfare Impacts of U.S. Solar Panel Tariffs</strong></a>
+              <div class="meta">Nov 2025 · with T. Gerarden, B. Bollinger, and K. Gillingham</div>
+            </div>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>O-Ring Production Networks</strong></a>
+              <div class="meta">JPE (Jan 2024) · with B. Demir, A. Fieler, and K. Yang</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Globalization &amp; technology upgrading</h3>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>Market Congestion and Information Frictions on Global E-Commerce Platforms</strong></a>
+              <div class="meta">Aug 2025 · 2nd R&amp;R at ReStat · with J. Bai, M. Chen, J. Liu, and X. Mu</div>
+            </div>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>Notching R&amp;D Investment with Corporate Income Tax Cuts in China</strong></a>
+              <div class="meta">AER (July 2021) · with Z. Chen, Z. Liu, and J.C. Suárez Serrato</div>
+            </div>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>Trade, Quality Upgrading, and Input Linkages: A Theory with Evidence from Colombia</strong></a>
+              <div class="meta">AER (Jan 2018) · with A.C. Fieler and M. Eslava</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Market distortions &amp; misallocation</h3>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>How Costly Are Markups</strong></a>
+              <div class="meta">JPE (July 2023) · with C. Edmond and V. Midrigan</div>
+            </div>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>Finance and Misallocation: Evidence from Plant-level Data</strong></a>
+              <div class="meta">AER (Feb 2014) · with V. Midrigan</div>
+            </div>
+
+            <div class="paper">
+              <a href="https://www.dropbox.com/" target="_blank" rel="noopener"><strong>Competition, Markups, and the Gains from International Trade</strong></a>
+              <div class="meta">AER (Oct 2015) · with C. Edmond and V. Midrigan</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top: 14px;">
+          <strong>Full list:</strong>
+          <span class="sep">•</span>
+          <a href="publications.html">Publications &amp; working papers (recommended next page)</a>
+          <span class="sep">•</span>
+          <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a>
+        </div>
+      </section>
+
+      <section id="teaching">
+        <div class="section-title">
+          <h2>Teaching</h2>
+          <div class="hint">Link to course pages / GitHub repos</div>
+        </div>
+        <div class="card">
+          <ul class="klist" style="margin:0;">
+            <li><a href="https://sites.google.com/site/yixusite/teaching_duke_2" target="_blank" rel="noopener">Econ 881-12 Firm and Industry Dynamics</a></li>
+            <li><a href="https://sites.google.com/site/yixusite/teaching_duke_3" target="_blank" rel="noopener">Econ 881-15 Entry Game Models</a></li>
+            <li><a href="https://www.danielyixu.com/econ-825-topics-in-io" target="_blank" rel="noopener">Econ 825 Topics in IO</a></li>
+            <li><a href="https://sites.google.com/site/yixusite/" target="_blank" rel="noopener">More teaching pages (legacy)</a></li>
+          </ul>
+          <p class="lead" style="margin:12px 0 0;">
+            If you’re maintaining course materials on GitHub (e.g., ECON 613), link the repository here for students.
+          </p>
+        </div>
+      </section>
+
+      <section id="links">
+        <div class="section-title">
+          <h2>Links</h2>
+          <div class="hint">External resources</div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <h3>Profiles</h3>
+            <ul class="klist">
+              <li><a href="https://www.nber.org/people/daniel_xu" target="_blank" rel="noopener">NBER profile</a></li>
+              <li><a href="https://cepr.org/about/people/daniel-yi-xu" target="_blank" rel="noopener">CEPR profile</a></li>
+              <li><a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Scholar</a></li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Materials</h3>
+            <ul class="klist">
+              <li><a href="https://www.dropbox.com/" target="_blank" rel="noopener">CV (Dropbox)</a></li>
+              <li><a href="https://www.dropbox.com/" target="_blank" rel="noopener">EARIE lecture</a></li>
+              <li><a href="https://www.dropbox.com/" target="_blank" rel="noopener">IIOC/CCER lecture</a></li>
+              <li><a href="https://chinaeconlab.org" target="_blank" rel="noopener">China Econ Lab</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span id="y"></span> Daniel Yi Xu · Built with GitHub Pages</div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
