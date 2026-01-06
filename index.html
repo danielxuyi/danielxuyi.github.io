@@ -152,7 +152,7 @@
       background: rgba(255,255,255,.02);
       padding: 18px;
     }
-    .card.tight{ margin-top: -80px; }
+    .card.tight{ margin-top: -140px; }
     .card h3{
       margin: 0 0 8px;
       font-size: 1.02rem;
@@ -190,7 +190,8 @@
       gap: 22px;
     }
     /* tighten top spacing for the lower two-column group */
-    .grid-2.tight-top{ margin-top: -80px; }
+    .grid-2.tight-top{ margin-top: 0px; }
+    .grid-2 .left-col{ margin-top: 20px; }
     @media (max-width: 860px){
       .grid-2{ grid-template-columns: 1fr; }
     }
@@ -432,8 +433,8 @@
           </div>
         </div>
 
-        <div class="grid-2 tight-top">
-          <div>
+        <div class="grid-2">
+          <div class="left-col">
             <div class="card">
               <h3>Fiscal Incentives and Firm Dynamics</h3>
 
