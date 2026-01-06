@@ -10,15 +10,15 @@
     :root{
       /* Darker, more professional (near-black) */
       --bg: #05070c;
-      --panel: rgba(255,255,255,.045);
-      --panel2: rgba(255,255,255,.06);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.66);
-      --line: rgba(255,255,255,.12);
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.95);
+      --muted: rgba(255,255,255,.72);
+      --line: rgba(255,255,255,.16);
 
-      /* Subtle, restrained accents */
-      --accent: #6a7bff;
-      --accent2: #19c8a6;
+      /* Subtle, but richer accents */
+      --accent: #576bff;
+      --accent2: #1fbfa3;
 
       --shadow: 0 14px 40px rgba(0,0,0,.55);
       --radius: 18px;
@@ -147,9 +147,9 @@
     }
 
     .card{
-      border: 1px solid var(--line);
+      border: 1px solid rgba(87,107,255,.10);
       border-radius: var(--radius2);
-      background: rgba(255,255,255,.02);
+      background: linear-gradient(180deg, rgba(87,107,255,0.02), rgba(255,255,255,0.03));
       padding: 18px;
     }
     .card.tight{ margin-top: -140px; }
@@ -158,8 +158,8 @@
       font-size: 1.12rem;
       font-weight: 700;
       letter-spacing: .3px;
-      color: var(--text);
-      border-bottom: 1px solid rgba(255,255,255,.03);
+      color: var(--accent);
+      border-bottom: 1px solid rgba(87,107,255,.12);
       padding-bottom: 8px;
     }
     .klist{
@@ -205,11 +205,11 @@
       margin: 12px 0;
       padding: 12px 14px;
       border-radius: 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.02);
+      border: 1px solid rgba(87,107,255,.06);
+      background: linear-gradient(180deg, rgba(87,107,255,0.01), rgba(255,255,255,0.01));
     }
     /* Slightly smaller paper title to help visual hierarchy */
-    .paper strong{ display:block; font-size: .90rem; font-weight: 600; }
+    .paper strong{ display:block; font-size: .90rem; font-weight: 600; color: rgba(255,255,255,.96); }
     .paper .meta{ color: var(--muted); font-size: .93rem; margin-top: 4px; }
 
     footer{
@@ -236,7 +236,7 @@
       <nav class="nav" aria-label="Primary">
         <!-- New pages -->
         <a class="pill" href="research.html">Research</a>
-        <a class="pill" href="publications.html">Publications</a>
+        <a class="pill" href="publication.html">Publications</a>
         <a class="pill" href="teaching.html">Teaching</a>
 
         <!-- In-page -->
