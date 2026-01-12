@@ -415,29 +415,32 @@
     }
 
     /* papers */
-.grid-2{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  align-items: start;
-  grid-auto-flow: row; /* keeps order stable */
-}
-
-/* explicit column control */
-.grid-2 > .card.col-left  { grid-column: 1; }
-.grid-2 > .card.col-right { grid-column: 2; }
-
-.grid-2 .card { margin-top: 0; }
-.grid-2 .card + .card { margin-top: 0; } /* not needed, just showing intent */
-.grid-2 { grid-auto-flow: row; }
-
-/* mobile collapse */
-@media (max-width: 980px){
-  .grid-2{
-    grid-template-columns: 1fr;
-  }
-}
-
+    /* Two real columns (independent vertical stacks) */
+    .grid-2{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    
+    /* Each column stacks its cards vertically */
+    .grid-2 > .col{
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    
+    /* Cards: no manual margins */
+    .grid-2 .card{
+      margin-top: 0 !important;
+    }
+    
+    /* Mobile: collapse to single column */
+    @media (max-width: 980px){
+      .grid-2{
+        grid-template-columns: 1fr;
+      }
+    }
 
     .card{
       border: 1px solid rgba(11,15,26,.12);
@@ -669,8 +672,8 @@
       </div>
 
       <div class="grid-2">
-
-          <div class="card col-left">
+        <div class = "col">
+          <div class="card">
             <h3><span class="tagline">Environmental Regulation and Productivity</span></h3>
 
             <div class="paper">
@@ -701,7 +704,7 @@
     -->  
           </div>
 
-          <div class="card col-right">
+          <div class="card">
             <h3><span class="tagline" style="background:rgba(255,79,216,.10);">Globalization and Technology Upgrading </span></h3>
 
             <div class="paper">
@@ -740,9 +743,8 @@
             </div>
           </div>
     -->
-          </div>
-        
-          <div class="card col-right">
+       
+          <div class="card">
             <h3><span class="tagline" style="background:rgba(0,195,137,.10);">Trade War and Trade Networks </span></h3>
 
             <div class="paper">
@@ -771,8 +773,11 @@
             </div>
      -->
           </div>
-        
-          <div class="card col-right">
+            
+        </div>
+
+       <div class = "col">
+          <div class="card">
             <h3><span class="tagline" style="background:rgba(255,176,32,.16);">Market Distortions and Misallocation </span></h3>
 
             <div class="paper">
@@ -805,10 +810,9 @@
               <div class="meta"><span class="journal">Japan and the World Economy (2006)</span> · with N. Guner and G. Ventura</div>
             </div>
     -->
-
           </div>
-        
-          <div class="card col-left" >
+         
+          <div class="card" >
             <h3><span class="tagline">Fiscal Incentives and Firm Dynamics </span></h3>
 
             <div class="paper">
@@ -821,8 +825,9 @@
               <div class="meta"><span class="journal">Tax Policy and the Economy (Oct 2020)</span> · with Z. Chen, Y. He, Z. Liu, and J.C. Suárez Serrato</div>
             </div>
          </div>
-        
-          <div class="card col-left">
+
+   <!--
+          <div class="card">
             <h3><span class="tagline" style="background:rgba(91,124,255,.10);">Political Economy of Service Industries</span></h3>
 
             <div class="paper">
@@ -836,7 +841,7 @@
             </div>
           </div>
 
-          <div class="card col-right" >
+          <div class="card" >
             <h3><span class="tagline" style="background:rgba(255,79,216,.10);">Industry Evolution</span></h3>
 
             <div class="paper">
@@ -863,11 +868,10 @@
               <strong><a href="https://www.dropbox.com/s/jnvupdquy5b8jvj/Dunne-Klimek-Roberts-Xu-2007.pdf" target="_blank" rel="noopener">The Dynamics of Market Structure and Market Size in Two Health Service Industries</a></strong>
               <div class="meta"><span class="journal">In Producer Dynamics (2007)</span> · with T. Dunne, S. Klimek, and M. Roberts</div>
             </div>
-       -->
-           
           </div>
+       -->
 
-  
+   --> 
       </div>
 
     </div>
