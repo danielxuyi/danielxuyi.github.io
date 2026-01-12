@@ -435,6 +435,11 @@
       margin-top: 0 !important;
     }
     
+    /* Prevent legacy column hacks from interfering */
+    .grid-2 .card[class*="col-"]{
+      grid-column: auto !important;
+    }
+    
     /* Mobile: collapse to single column */
     @media (max-width: 980px){
       .grid-2{
