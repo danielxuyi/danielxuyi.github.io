@@ -426,6 +426,9 @@
 /* explicit column control */
 .grid-2 > .card.col-left  { grid-column: 1; }
 .grid-2 > .card.col-right { grid-column: 2; }
+
+.grid-2 .card { margin-top: 0; }
+.grid-2 .card + .card { margin-top: 0; } /* not needed, just showing intent */
 .grid-2 { grid-auto-flow: row; }
 
 /* mobile collapse */
@@ -698,7 +701,7 @@
     -->  
           </div>
 
-          <div class="card col-right" style="margin-top:18px;">
+          <div class="card col-right">
             <h3><span class="tagline" style="background:rgba(255,79,216,.10);">Globalization and Technology Upgrading </span></h3>
 
             <div class="paper">
@@ -769,7 +772,7 @@
      -->
           </div>
         
-          <div class="card col-right" style="margin-top:18px;">
+          <div class="card col-right">
             <h3><span class="tagline" style="background:rgba(255,176,32,.16);">Market Distortions and Misallocation </span></h3>
 
             <div class="paper">
@@ -805,7 +808,7 @@
 
           </div>
         
-          <div class="card col-left" style="margin-top:18px;">
+          <div class="card col-left" >
             <h3><span class="tagline">Fiscal Incentives and Firm Dynamics </span></h3>
 
             <div class="paper">
@@ -819,7 +822,7 @@
             </div>
          </div>
         
-          <div class="card col-left" style="margin-top:18px;">
+          <div class="card col-left">
             <h3><span class="tagline" style="background:rgba(91,124,255,.10);">Political Economy of Service Industries</span></h3>
 
             <div class="paper">
@@ -833,7 +836,7 @@
             </div>
           </div>
 
-          <div class="card col-right" style="margin-top:18px;">
+          <div class="card col-right" >
             <h3><span class="tagline" style="background:rgba(255,79,216,.10);">Industry Evolution</span></h3>
 
             <div class="paper">
