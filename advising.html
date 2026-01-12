@@ -337,7 +337,13 @@
       color: rgba(11,15,26,.78);
       font-size: 0.98rem;
     }
-    .entry:first-child{ border-top: 0; padding-top: 0; margin-top: 0; }
+    /* Remove the top divider/padding for the first ROW (both columns) */
+    .list-grid .entry:nth-child(-n+2){
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
     .entry b{ color: rgba(11,15,26,.92); }
 
     /* “*” (primary/co-adviser) styling */
