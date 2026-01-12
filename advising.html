@@ -1,1 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Advising — Daniel Yi Xu</title>
+  <meta name="description" content="Student advising, meeting scheduling, and graduate advising history for Daniel Yi Xu." />
+
+  <!-- Clean, modern font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #ffffff;
+      --text: #0b0f1a;
+      --muted: rgba(11,15,26,.65);
+      --line: rgba(11,15,26,.12);
+      --shadow: 0 18px 40px rgba(10,15,25,.12);
+
+      /* Vibrant accents (used sparingly) */
+      --a1: #5B7CFF;   /* electric blue */
+      --a2: #FF4FD8;   /* magenta */
+      --a3: #00C389;   /* green */
+      --a4: #FFB020;   /* amber */
+
+      --maxw: 1160px;
+      --pad: clamp(18px, 2.4vw, 26px);
+      --h1: clamp(2.0rem, 4.2vw, 3.4rem);
+      --h2: clamp(1.05rem, 2.0vw, 1.35rem);
+      --p:  clamp(1.0rem, 1.4vw, 1.08rem);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    html{ scroll-behavior:smooth; }
+    body{
+      margin:0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Manrope, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x:hidden;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; text-underline-offset: 3px; }
+    .wrap{ width: min(var(--maxw), calc(100% - 44px)); margin: 0 auto; }
+
+    /* =========================
+       Top nav (matches site)
+       ========================= */
+    header{
+      position: fixed;
+      top: 14px;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      pointer-events: none;
+    }
+    .nav-bar{
+      pointer-events: auto;
+      width: min(var(--maxw), calc(100% - 44px));
+      margin: 0 auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(10,15,25,.10);
+      border-radius: 999px;
+    }
+
+    .brand{ display:flex; align-items:center; gap: 10px; min-width: 220px; }
+    .sig{ width: 10px; height: 10px; background: linear-gradient(90deg, var(--a1), var(--a2)); }
+    .brand strong{ font-weight: 800; letter-spacing: -0.4px; font-size: 0.98rem; line-height: 1.05; }
+
+    nav.primary{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .link{
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 8px 10px;
+      border: 1px solid transparent;
+    }
+    .link:hover{
+      text-decoration:none;
+      border-color: var(--line);
+      background: rgba(255,255,255,.9);
+    }
+    .link.cta{
+      border-color: rgba(11,15,26,.18);
+      background: #fff;
+      box-shadow: 0 8px 22px rgba(10,15,25,.08);
+      border-radius: 999px;
+    }
+    .link.cta:hover{ border-color: rgba(11,15,26,.26); }
+
+    .menu-btn{
+      display:none;
+      border: 1px solid var(--line);
+      background: #fff;
+      padding: 8px 10px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      border-radius: 18px;
+    }
+    @media (max-width: 980px){
+      nav.primary{ display:none; }
+      .menu-btn{ display:inline-flex; align-items:center; gap:8px; }
+    }
+
+    .menu-panel{
+      pointer-events: auto;
+      width: min(var(--maxw), calc(100% - 44px));
+      margin: 10px auto 0;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(10,15,25,.10);
+      display:none;
+
+      border-radius: 0; /* NOT ROUND */
+      overflow: hidden;
+    }
+    .menu-panel.open{ display:block; }
+    .menu-panel a{
+      display:block;
+      padding: 12px 16px;
+      border-top: 1px solid rgba(11,15,26,.08);
+      font-weight: 800;
+      text-decoration:none;
+      text-align: center;
+    }
+    .menu-panel a:first-child{ border-top: 0; }
+    .menu-panel a:hover{ background: rgba(91,124,255,.08); }
+
+    /* =========================
+       Page hero
+       ========================= */
+    .page-hero{
+      padding: calc(84px + var(--pad)) 0 18px;
+      border-bottom: 1px solid var(--line);
+      overflow:hidden;
+      background:
+        radial-gradient(900px 420px at 12% 10%, rgba(255,79,216,.12), transparent 60%),
+        radial-gradient(900px 420px at 88% 12%, rgba(91,124,255,.12), transparent 62%),
+        radial-gradient(900px 420px at 60% 110%, rgba(0,195,137,.10), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,1), rgba(255,255,255,1));
+    }
+    .page-hero h1{
+      margin: 0 0 8px;
+      font-size: var(--h1);
+      line-height: 1.02;
+      letter-spacing: -1.1px;
+      font-weight: 800;
+    }
+    .subtitle{
+      margin: 0 0 14px;
+      font-size: var(--p);
+      color: rgba(11,15,26,.82);
+      max-width: 90ch;
+    }
+    .color-rule{
+      height: 2px;
+      background: linear-gradient(90deg, var(--a1), var(--a2), var(--a3), var(--a4));
+      margin: 14px 0 0;
+      opacity: .85;
+    }
+
+    /* =========================
+       Sections
+       ========================= */
+    main{ padding: 26px 0 10px; }
+
+    .section-head{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 0 16px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 18px;
+    }
+    .section-head h2{
+      margin:0;
+      font-size: var(--h2);
+      text-transform: uppercase;
+      letter-spacing: -0.3px;
+      font-weight: 800;
+    }
+    .section-head .hint{
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 75ch;
+    }
+    @media (max-width: 820px){
+      .section-head{ flex-direction:column; align-items:flex-start; }
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 18px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .grid-2{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      border: 1px solid rgba(11,15,26,.12);
+      background: #fff;
+      padding: 14px;
+    }
+
+    .callout{
+      border: 1px solid rgba(11,15,26,.12);
+      background: rgba(91,124,255,.06);
+      padding: 12px 14px;
+    }
+    .callout strong{ font-weight: 900; letter-spacing: -0.2px; }
+    .callout p{ margin: 8px 0 0; color: rgba(11,15,26,.78); }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid rgba(11,15,26,.16);
+      background: #fff;
+      font-weight: 900;
+      font-size: 0.95rem;
+      letter-spacing: -0.2px;
+      box-shadow: 0 10px 24px rgba(10,15,25,.10);
+      transition: transform .08s ease, box-shadow .2s ease;
+    }
+    .btn:hover{
+      text-decoration:none;
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(10,15,25,.12);
+    }
+    .btn.primary{
+      border-color: rgba(11,15,26,.10);
+      background: linear-gradient(90deg, rgba(91,124,255,.18), rgba(255,79,216,.18));
+    }
+    .btn-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px; }
+
+    .small{
+      color: rgba(11,15,26,.70);
+      font-size: 0.95rem;
+      margin-top: 10px;
+    }
+
+    /* Lists */
+    .bullets{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: rgba(11,15,26,.78);
+      font-size: 0.98rem;
+    }
+    .bullets li{ margin: 8px 0; }
+
+    /* Advisees blocks */
+    .block{
+      border: 1px solid rgba(11,15,26,.12);
+      background:#fff;
+      margin-top: 18px;
+    }
+    .block-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(11,15,26,.10);
+      background: rgba(0,195,137,.06);
+    }
+    .block-head strong{
+      font-weight: 900;
+      letter-spacing: -0.4px;
+      font-size: 1.02rem;
+    }
+    .block-head span{
+      color: rgba(11,15,26,.68);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .subhead{
+      padding: 12px 14px 0;
+      font-weight: 900;
+      letter-spacing: -0.2px;
+      text-transform: uppercase;
+      font-size: 0.92rem;
+      color: rgba(11,15,26,.82);
+    }
+
+    .list-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 18px;
+      padding: 10px 14px 14px;
+    }
+    @media (max-width: 980px){
+      .list-grid{ grid-template-columns: 1fr; }
+    }
+
+    .entry{
+      border-top: 1px solid rgba(11,15,26,.08);
+      padding-top: 10px;
+      margin-top: 10px;
+      color: rgba(11,15,26,.78);
+      font-size: 0.98rem;
+    }
+    .entry:first-child{ border-top: 0; padding-top: 0; margin-top: 0; }
+    .entry b{ color: rgba(11,15,26,.92); }
+
+    /* “*” (primary/co-adviser) styling */
+    .star{
+      font-weight: 900;
+      color: rgba(11,15,26,.92);
+    }
+    .legend{
+      padding: 10px 14px 14px;
+      border-top: 1px solid rgba(11,15,26,.10);
+      color: rgba(11,15,26,.70);
+      font-size: 0.95rem;
+      background: rgba(255,176,32,.08);
+    }
+
+    footer{
+      padding: 28px 0 60px;
+      border-top: 1px solid var(--line);
+      color: rgba(11,15,26,.62);
+      font-weight: 600;
+      text-align:center;
+    }
+    :focus-visible{
+      outline: 3px solid rgba(91,124,255,.35);
+      outline-offset: 3px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <header aria-label="Site header">
+    <div class="nav-bar">
+      <div class="brand">
+        <div class="sig" aria-hidden="true"></div>
+        <div><strong>Daniel Yi Xu</strong></div>
+      </div>
+
+      <nav class="primary" aria-label="Primary navigation">
+        <a class="link" href="index.html#about">About</a>
+        <a class="link" href="index.html#roles">Roles</a>
+        <a class="link" href="index.html#selected">Selected</a>
+        <a class="link" href="advising.html" aria-current="page">Advising</a>
+        <a class="link" href="publication.html">Publications</a>
+        <a class="link cta" href="mailto:daniel.xu@duke.edu">Email</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel">
+        Menu <span aria-hidden="true">▾</span>
+      </button>
+    </div>
+
+    <div class="menu-panel" id="menuPanel" role="navigation" aria-label="Mobile navigation">
+      <a href="index.html#about">About</a>
+      <a href="index.html#roles">Roles</a>
+      <a href="index.html#selected">Selected</a>
+      <a href="advising.html" aria-current="page">Advising</a>
+      <a href="publication.html">Publications</a>
+      <a href="mailto:daniel.xu@duke.edu">Email</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="page-hero" aria-label="Advising header">
+    <div class="wrap">
+      <h1>Student Advising</h1>
+      <p class="subtitle">
+        Scheduling, expectations for meetings, and student placements (NYU &amp; Duke).
+      </p>
+      <div class="color-rule" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <main>
+    <div class="wrap">
+
+      <!-- Scheduling + RA -->
+      <div class="section-head">
+        <h2>Schedule &amp; research assistantships</h2>
+        <div class="hint">Please read the scheduling rules carefully before booking.</div>
+      </div>
+
+      <div class="grid-2">
+        <section class="card" aria-label="Schedule a meeting">
+          <div class="callout">
+            <strong>Schedule a Meeting</strong>
+            <p>
+              For Ph.D. students (and M.A RA/Undergraduate Honors Thesis student) I advise — if you would like to make an appointment,
+              please schedule at here. All meeting slots are first-come-first-served.
+              To make our meeting productive, please prepare a 2–3 pages of write-up specifying the questions you would like to discuss about.
+            </p>
+          </div>
+
+          <div class="btn-row" aria-label="Scheduling actions">
+            <!-- Replace the href with your actual scheduling link -->
+            <a class="btn primary" href="#" aria-label="Schedule an appointment (add your link)">Schedule an appointment</a>
+            <a class="btn" href="mailto:daniel.xu@duke.edu">Email: daniel.xu@duke.edu</a>
+          </div>
+
+          <ul class="bullets">
+            <li>For my Ph.D. advisees who are <b>4th year and above</b>, additional meetings can be arranged via email <a href="mailto:daniel.xu@duke.edu">daniel.xu@duke.edu</a>.</li>
+            <li>For <b>ALL others</b>, please email me at <a href="mailto:daniel.xu@duke.edu">daniel.xu@duke.edu</a> before you schedule an appointment online.</li>
+          </ul>
+
+          <div class="small">
+            Tip: If you paste a short agenda in your email, it helps me route you to the right slot format (quick check-in vs. deep dive).
+          </div>
+        </section>
+
+        <aside class="card" aria-label="Graduate Research Assistant">
+          <div class="callout" style="background: rgba(255,79,216,.06);">
+            <strong>Graduate Research Assistant</strong>
+            <p>
+              My research has been sponsored by the National Science Foundation, the National Bureau of Economic Research,
+              and the Private Enterprise Development in Low-Income Countries. Please contact by email.
+            </p>
+          </div>
+
+          <div class="btn-row">
+            <a class="btn primary" href="mailto:daniel.xu@duke.edu">Inquire by email</a>
+          </div>
+
+          <ul class="bullets">
+            <li>Please include your CV, your current program year, and a brief description of research interests.</li>
+            <li>If relevant, include links to a writing sample or draft.</li>
+          </ul>
+        </aside>
+      </div>
+
+      <!-- Advisees -->
+      <section class="block" aria-label="Graduate advising history">
+        <div class="block-head">
+          <strong>Graduate Students I have advised at NYU and DUKE</strong>
+          <span>Graduation/Placement · <span class="star">*</span> primary/co-adviser</span>
+        </div>
+
+        <div class="legend">
+          Notation: <span class="star">*</span> indicates primary/co-adviser (as in your original list).
+        </div>
+
+        <div class="subhead">NYU (PhD. Students, First Job)</div>
+        <div class="list-grid" aria-label="NYU PhD advisees list">
+          <div class="entry">Yijia Wang (NERA, 2008)</div>
+          <div class="entry">Niyati Ahuja (University of Scranton, 2009)</div>
+          <div class="entry">Jun Wen (Cornerstone, 2011)</div>
+          <div class="entry">Baiyu Dong<span class="star">*</span> (Cheung Kong GSB, 2012)</div>
+          <div class="entry">Mandy Mantian Hu (Marketing, Chinese U of HK, 2012)</div>
+          <div class="entry">Sue Ryung Chang (Marketing, University of Georgia, 2012)</div>
+        </div>
+
+        <div class="subhead">DUKE (PhD. Students, First Job)</div>
+        <div class="list-grid" aria-label="Duke PhD advisees list">
+          <div class="entry">Kristoph Kleiner (Finance, Indiana Kelley School of Business, 2014)</div>
+          <div class="entry">Wei Wei (Finance, U of Calgary, 2014)</div>
+
+          <div class="entry">Sophia Ying Li (Cornerstone, 2015)</div>
+          <div class="entry">Joe Mazur (Purdue U, 2015)</div>
+          <div class="entry">Yiting Deng (Marketing, Notre Dame Mendoza College of Business, 2015)</div>
+
+          <div class="entry">Pamela Medina<span class="star">*</span> (Toronto Rotman School of Business, 2016)</div>
+          <div class="entry">Yang Yu (Shanghai U of Finance and Economics, 2016)</div>
+          <div class="entry">Yifang Guo<span class="star">*</span> (San Diego Gas and Electric, 2016)</div>
+
+          <div class="entry">Tedi Skiti<span class="star">*</span> (Strategy, Temple Fox School of Business, 2017)</div>
+          <div class="entry">Olga Kozlova (Analysis Group, 2017)</div>
+
+          <div class="entry">Su Zhang<span class="star">*</span> (Analysis Group, 2018)</div>
+          <div class="entry">Andrew Steck (Toronto Rotman School of Business, 2018)</div>
+          <div class="entry">Sherry Wu (Visiting AP, Indiana Kelley School of Business, 2018)</div>
+          <div class="entry">Jose Martinez (Inter-American Development Bank, 2018)</div>
+
+          <div class="entry">Yilin Jiang (Mckinsey Consulting, 2019)</div>
+          <div class="entry">Kate Maxwell (Cornerstone, 2019)</div>
+
+          <div class="entry">Yanyou Chen<span class="star">*</span> (Toronto, 2020)</div>
+          <div class="entry">Chuhang Yin<span class="star">*</span> (Bates White Consulting, 2020)</div>
+          <div class="entry">Rudolf Harri-Oberg<span class="star">*</span> (Marketing, Deakin University, 2020)</div>
+          <div class="entry">Andrey Ordin (Finance, UT Austin McCombs School of Business, 2020)</div>
+
+          <div class="entry">Tiancheng Chen<span class="star">*</span> (Amazon, 2021)</div>
+          <div class="entry">Taehoon Kim<span class="star">*</span> (Korean Institute of Industrial Economics and Trade, 2021)</div>
+          <div class="entry">Jay Im<span class="star">*</span> (Finance, Federal Reserve Board, 2021)</div>
+          <div class="entry">Elessar Chen<span class="star">*</span> (BNY Mellon, 2021)</div>
+          <div class="entry">Jonathan Moreno (UT San Antonio, 2021)</div>
+          <div class="entry">Gabor Palinko (Cornerstone, 2021)</div>
+
+          <div class="entry">Xirui Zhang<span class="star">*</span> (Amazon, 2022)</div>
+          <div class="entry">Yuxuan He (Amazon, 2022)</div>
+          <div class="entry">Xian Jiang<span class="star">*</span> (UC Davis, 2022)</div>
+          <div class="entry">Jeremy Lebow (Worldbank, 2022)</div>
+
+          <div class="entry">Damien Kim (Korean Development Institute, 2023)</div>
+          <div class="entry">Kelly Yang<span class="star">*</span> (Indiana Kelley School of Business, 2023)</div>
+
+          <div class="entry">Sung-Ju Wu<span class="star">*</span> (Academia Sinica, 2024)</div>
+          <div class="entry">Seohee Kim<span class="star">*</span> (Finance, Indiana Kelley School of Business, 2024)</div>
+          <div class="entry">Jin Liu<span class="star">*</span> (University of Pennsylvania, 2024, advised @ NYU)</div>
+          <div class="entry">Alison Pei<span class="star">*</span> (Charles Rivers Associates, 2024)</div>
+          <div class="entry">Boya Xu (Marketing, Virginia Tech Pamplin Business School, 2024)</div>
+          <div class="entry">Zhenxuan Wang (North Carolina State University, 2024)</div>
+
+          <div class="entry">Weiting Miao<span class="star">*</span> (Hong Kong University, after post-doc Stanford, 2025)</div>
+          <div class="entry">Tulio Salvio Sousa (Indiana Kelley School of Business, 2025)</div>
+          <div class="entry">David Shin (University of Tennessee - Knoxville, 2025)</div>
+          <div class="entry">John Shin (Korean Institute of Industrial Economics and Trade, 2025)</div>
+          <div class="entry">Muhammet Nurullah Gulec (Central Bank of Turkey, 2025)</div>
+
+          <div class="entry">Boyang Bai<span class="star">*</span> (Ongoing)</div>
+          <div class="entry">Barron Tsai<span class="star">*</span> (Ongoing)</div>
+          <div class="entry">Arthur Carvalho Brito<span class="star">*</span> (Ongoing)</div>
+          <div class="entry">Bomi Kang<span class="star">*</span> (Ongoing)</div>
+          <div class="entry">Xuan Lin<span class="star">*</span> (Ongoing)</div>
+          <div class="entry">Cem Ozdemir<span class="star">*</span> (Ongoing)</div>
+          <div class="entry">Xuyang Xia (Ongoing)</div>
+          <div class="entry">Joyce Ma (Strategy, Ongoing)</div>
+          <div class="entry">Nicolas Urdaneta<span class="star">*</span> (Ongoing)</div>
+          <div class="entry">Yijun Wang<span class="star">*</span> (Ongoing)</div>
+          <div class="entry">Andres Santos Vargas (Ongoing)</div>
+        </div>
+
+        <div class="subhead">DUKE (MA. Student/RA supported, PhD Program Placements)</div>
+        <div class="list-grid" aria-label="Duke MA RA supported placements">
+          <div class="entry">Chuhang Ying (Duke)</div>
+          <div class="entry">Han Gao (Minnesota)</div>
+          <div class="entry">Xian Jiang (Duke)</div>
+          <div class="entry">Shuxian Chen (U of Washington)</div>
+          <div class="entry">Shuang Wang (Boston University)</div>
+          <div class="entry">Yuxuan He (Duke)</div>
+          <div class="entry">Seung Hyun Kim (UCSD)</div>
+          <div class="entry">Jin Liu (NYU)</div>
+          <div class="entry">Haoran Zhang (UNC Chapel Hill)</div>
+          <div class="entry">Weiting Miao (Duke)</div>
+          <div class="entry">Chengdai Huang (University of Chicago, full-time RA, now NYU)</div>
+          <div class="entry">Liying Qiu (Carnegie Mellon, Marketing)</div>
+          <div class="entry">Xuan Lin (Duke)</div>
+          <div class="entry">Mingyang Wei (Boston College)</div>
+          <div class="entry">Shuhan Zou (Princeton)</div>
+          <div class="entry">Jiaqi Huang (Penn State)</div>
+          <div class="entry">Shijian Liu (NYU Stern, Marketing)</div>
+          <div class="entry">Yue Zhang (UNC Chapel Hill)</div>
+          <div class="entry">Hailun Chen (UC Berkeley, ARE)</div>
+          <div class="entry">Wenjia Wang (NYU Stern)</div>
+          <div class="entry">Zeyuan Li (MIT Sloan, Information Technology)</div>
+          <div class="entry">Yinan Xu (University of Michigan, Information)</div>
+        </div>
+
+        <div class="subhead">non-DUKE (RA supported, PhD Program Placements)</div>
+        <div class="list-grid" aria-label="Non-Duke RA supported placements">
+          <div class="entry">Yiyuan Wang (Yale SOM)</div>
+          <div class="entry">Anran Tan (Duke)</div>
+          <div class="entry">Wenhao Li (UNC Chapel Hill)</div>
+          <div class="entry">Zhenyu Shen (Princeton)</div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div>© <span id="y"></span> Daniel Yi Xu · Built with GitHub Pages</div>
+  </footer>
+
+  <script>
+    (function(){
+      const y = document.getElementById("y");
+      if (y) y.textContent = String(new Date().getFullYear());
+
+      const btn = document.getElementById("menuBtn");
+      const panel = document.getElementById("menuPanel");
+
+      function closeMenu(){
+        if (!panel || !btn) return;
+        panel.classList.remove("open");
+        btn.setAttribute("aria-expanded","false");
+      }
+
+      if (btn && panel){
+        btn.addEventListener("click", () => {
+          const open = panel.classList.toggle("open");
+          btn.setAttribute("aria-expanded", String(open));
+        });
+
+        document.addEventListener("click", (e) => {
+          const t = e.target;
+          if (!t) return;
+          const inside = panel.contains(t) || btn.contains(t);
+          if (!inside) closeMenu();
+        });
+
+        panel.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+      }
+    })();
+  </script>
+</body>
+</html>
 
