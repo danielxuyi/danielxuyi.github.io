@@ -426,6 +426,7 @@
 /* explicit column control */
 .grid-2 > .card.col-left  { grid-column: 1; }
 .grid-2 > .card.col-right { grid-column: 2; }
+.grid-2 { grid-auto-flow: row; }
 
 /* mobile collapse */
 @media (max-width: 980px){
@@ -665,7 +666,7 @@
       </div>
 
       <div class="grid-2">
-        <div>
+
           <div class="card col-left">
             <h3><span class="tagline">Environmental Regulation and Productivity</span></h3>
 
@@ -736,10 +737,9 @@
             </div>
           </div>
     -->
-        </div>
-
-        <div>
-          <div class="card">
+          </div>
+        
+          <div class="card col-right">
             <h3><span class="tagline" style="background:rgba(0,195,137,.10);">Trade War and Trade Networks </span></h3>
 
             <div class="paper">
@@ -768,8 +768,8 @@
             </div>
      -->
           </div>
-
-          <div class="card" style="margin-top:18px;">
+        
+          <div class="card col-right" style="margin-top:18px;">
             <h3><span class="tagline" style="background:rgba(255,176,32,.16);">Market Distortions and Misallocation </span></h3>
 
             <div class="paper">
@@ -802,9 +802,10 @@
               <div class="meta"><span class="journal">Japan and the World Economy (2006)</span> · with N. Guner and G. Ventura</div>
             </div>
     -->
-          </div>
 
-          <div class="card" style="margin-top:18px;">
+          </div>
+        
+          <div class="card col-left" style="margin-top:18px;">
             <h3><span class="tagline">Fiscal Incentives and Firm Dynamics </span></h3>
 
             <div class="paper">
@@ -816,9 +817,9 @@
               <strong><a href="https://www.dropbox.com/s/o3247ec2jjnc2yn/Chen-He-Liu-Serrato-Xu.pdf" target="_blank" rel="noopener">The Structure of Business Taxation in China</a></strong>
               <div class="meta"><span class="journal">Tax Policy and the Economy (Oct 2020)</span> · with Z. Chen, Y. He, Z. Liu, and J.C. Suárez Serrato</div>
             </div>
-          </div>
-
-          <div class="card" style="margin-top:18px;">
+         </div>
+        
+          <div class="card col-left" style="margin-top:18px;">
             <h3><span class="tagline" style="background:rgba(91,124,255,.10);">Political Economy of Service Industries</span></h3>
 
             <div class="paper">
@@ -832,7 +833,7 @@
             </div>
           </div>
 
-          <div class="card" style="margin-top:18px;">
+          <div class="card col-right" style="margin-top:18px;">
             <h3><span class="tagline" style="background:rgba(255,79,216,.10);">Industry Evolution</span></h3>
 
             <div class="paper">
@@ -863,7 +864,7 @@
            
           </div>
 
-        </div>
+  
       </div>
 
     </div>
