@@ -381,6 +381,26 @@
       outline: 3px solid rgba(91,124,255,.35);
       outline-offset: 3px;
     }
+
+    /* ============================
+       Mobile refinements (≤ 600px)
+       ============================ */
+    @media (max-width: 600px) {
+      /* Nav: let brand shrink so Menu button is never squeezed */
+      .brand { min-width: 0; }
+
+      /* Tighter side margins on very small screens */
+      .wrap,
+      .nav-bar,
+      .menu-panel { width: calc(100% - 28px); }
+
+      /* Block header: stack institution text + notation badge */
+      .block-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+
+      /* Action buttons: stack vertically, full width */
+      .btn-row { flex-direction: column; }
+      .btn-row .btn { width: 100%; justify-content: center; }
+    }
   </style>
 </head>
 

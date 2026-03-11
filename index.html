@@ -521,6 +521,30 @@
       outline: 3px solid rgba(91,124,255,.35);
       outline-offset: 3px;
     }
+
+    /* ============================
+       Mobile refinements (≤ 600px)
+       ============================ */
+    @media (max-width: 600px) {
+      /* Nav: let brand shrink so Menu button is never squeezed */
+      .brand { min-width: 0; }
+
+      /* Tighter side margins on very small screens */
+      .wrap,
+      .nav-bar,
+      .menu-panel { width: calc(100% - 28px); }
+
+      /* Card headers: allow long taglines to wrap */
+      .card h3 { flex-direction: column; align-items: flex-start; }
+      .tagline  { white-space: normal; font-size: 0.88rem; }
+
+      /* Hero CTA buttons: stack vertically, full width */
+      .cta-row { flex-direction: column; }
+      .cta-row .btn { width: 100%; justify-content: center; }
+
+      /* Chips: slightly smaller text */
+      .chip { font-size: 0.85rem; padding: 6px 8px; }
+    }
   </style>
 </head>
 
