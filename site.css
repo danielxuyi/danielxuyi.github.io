@@ -14,7 +14,6 @@
    Design tokens
    ============================================================ */
 :root {
-  /* Color */
   --ink:         #000000;
   --ink-soft:    #1a1a1a;
   --body:        #757575;
@@ -23,30 +22,26 @@
   --canvas-soft: #f5f5f5;
   --link:        #057dbc;
 
-  /* Duke accent (used only for the gradient rule and the brand dot) */
   --duke-1: #003087;
   --duke-2: #0F7BC4;
 
-  /* Typography families */
   --f-display: "Playfair Display", "Times New Roman", Georgia, serif;
   --f-serif:   Lora, "Source Serif Pro", Georgia, "Times New Roman", serif;
   --f-sans:    Manrope, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-  /* Type scale */
-  --t-hero:   clamp(2.4rem, 5vw, 4rem);   /* 64px equiv */
-  --t-lg:     clamp(1.8rem, 3.5vw, 3rem); /* 48px equiv */
-  --t-md:     clamp(1.4rem, 2.5vw, 2rem); /* 32px equiv */
-  --t-sm:     clamp(1.1rem, 1.8vw, 1.625rem); /* 26px equiv */
-  --t-xs:     1.25rem;                    /* 20px — sans bold */
-  --t-body-lg: 1.1875rem;                 /* 19px serif lead */
-  --t-body:   1rem;                       /* 16px serif body */
-  --t-ui:     1.0625rem;                  /* 17px sans */
-  --t-sm-ui:  0.875rem;                   /* 14px sans */
-  --t-byline: 0.795rem;                   /* 12.73px */
-  --t-caption: 0.75rem;                   /* 12px */
-  --t-btn:    1rem;                       /* 16px button */
+  --t-hero:    clamp(2.4rem, 5vw, 4rem);
+  --t-lg:      clamp(1.8rem, 3.5vw, 3rem);
+  --t-md:      clamp(1.4rem, 2.5vw, 2rem);
+  --t-sm:      clamp(1.1rem, 1.8vw, 1.625rem);
+  --t-xs:      1.25rem;
+  --t-body-lg: 1.1875rem;
+  --t-body:    1rem;
+  --t-ui:      1.0625rem;
+  --t-sm-ui:   0.875rem;
+  --t-byline:  0.795rem;
+  --t-caption: 0.75rem;
+  --t-btn:     1rem;
 
-  /* Spacing (4px base) */
   --sp-xxs: 2px;
   --sp-xs:  4px;
   --sp-sm:  8px;
@@ -57,9 +52,8 @@
   --sp-3xl: 32px;
   --sp-4xl: 48px;
 
-  /* Layout */
-  --maxw: 1160px;
-  --gutter: clamp(14px, 2.2vw, 22px);
+  --maxw:   1160px;
+  --gutter: clamp(16px, 3vw, 24px);
 }
 
 /* ============================================================
@@ -81,14 +75,8 @@ body {
   overflow-x: hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ============================================================
    Layout helpers
@@ -109,7 +97,6 @@ a:hover {
   flex-direction: column;
   gap: var(--sp-lg);
 }
-
 @media (max-width: 980px) {
   .grid-2 { grid-template-columns: 1fr; }
 }
@@ -128,30 +115,28 @@ header {
 
 .nav-bar {
   pointer-events: auto;
-  width: min(var(--maxw), calc(100% - var(--gutter) * 2));
+  /* slightly tighter on mobile so it doesn't overflow */
+  width: min(var(--maxw), calc(100% - 24px));
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--sp-md);
-
+  gap: var(--sp-sm);
   padding: var(--sp-sm) var(--sp-md);
   border: 1px solid var(--hairline);
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255,255,255,.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-
-  /* Wired: no border-radius on interactive surfaces — but pill nav is kept
-     for the floating effect since this isn't a button/input */
   border-radius: 999px;
 }
 
-/* Brand */
 .brand {
   display: flex;
   align-items: center;
   gap: var(--sp-sm);
-  min-width: 200px;
+  /* NO min-width — let it shrink on mobile */
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .sig {
@@ -166,9 +151,11 @@ header {
   font-weight: 800;
   font-size: var(--t-sm-ui);
   letter-spacing: -0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* Primary nav links */
 nav.primary {
   display: flex;
   align-items: center;
@@ -192,15 +179,15 @@ nav.primary {
   background: var(--canvas);
 }
 .link.cta {
-  border: 1px solid var(--ink);   /* Wired: solid ink border on CTAs */
+  border: 1px solid var(--ink);
   background: var(--canvas);
-  border-radius: 999px;           /* only the nav Email CTA stays pill */
+  border-radius: 999px;
 }
 .link.cta:hover { background: var(--canvas-soft); }
 
-/* Hamburger */
 .menu-btn {
   display: none;
+  flex-shrink: 0;
   border: 1px solid var(--hairline);
   background: var(--canvas);
   padding: var(--sp-sm) var(--sp-md);
@@ -210,24 +197,25 @@ nav.primary {
   letter-spacing: 0.4px;
   cursor: pointer;
   border-radius: 18px;
+  white-space: nowrap;
 }
 
 @media (max-width: 980px) {
   nav.primary { display: none; }
-  .menu-btn { display: inline-flex; align-items: center; gap: var(--sp-sm); }
+  .menu-btn   { display: inline-flex; align-items: center; gap: var(--sp-sm); }
 }
 
-/* Mobile menu panel — square (Wired rule) */
+/* Mobile menu panel */
 .menu-panel {
   pointer-events: auto;
-  width: min(var(--maxw), calc(100% - var(--gutter) * 2));
+  width: min(var(--maxw), calc(100% - 24px));
   margin: 10px auto 0;
   border: 1px solid var(--hairline);
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(255,255,255,.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   display: none;
-  border-radius: 0; /* square — Wired signature */
+  border-radius: 0;
   overflow: hidden;
 }
 .menu-panel.open { display: block; }
@@ -246,19 +234,19 @@ nav.primary {
 .menu-panel a:hover { background: var(--canvas-soft); }
 
 /* ============================================================
-   Page hero (non-index pages: Advising, Publications, Vox)
+   Page hero (Advising, Publications, Vox, Teaching)
    ============================================================ */
 .page-hero {
   padding: calc(84px + var(--sp-4xl)) 0 var(--sp-3xl);
   border-bottom: 1px solid var(--hairline);
-  background: var(--canvas); /* clean white — Wired editorial flat */
+  background: var(--canvas);
 }
 
 .page-hero h1 {
   margin: 0 0 var(--sp-sm);
   font-family: var(--f-display);
   font-size: var(--t-lg);
-  font-weight: 400;            /* Wired: elegance at weight 400 */
+  font-weight: 400;
   line-height: 1.05;
   letter-spacing: -0.4px;
 }
@@ -272,7 +260,6 @@ nav.primary {
   line-height: 1.65;
 }
 
-/* Thin Duke gradient rule — stays as brand accent, used sparingly */
 .color-rule {
   height: 2px;
   background: linear-gradient(90deg, var(--duke-1), var(--duke-2));
@@ -293,6 +280,7 @@ nav.primary {
   overflow: hidden;
 }
 
+/* The video wrapper MUST have class="hero-video" in the HTML */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -305,7 +293,7 @@ nav.primary {
   top: 50%; left: 50%;
   width: 140%;
   height: 140%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%,-50%);
   border: 0;
 }
 
@@ -313,13 +301,20 @@ nav.primary {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.92) 70%, rgba(255,255,255,0.98));
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.6),
+    rgba(255,255,255,.92) 70%,
+    rgba(255,255,255,.98)
+  );
   pointer-events: none;
 }
 
 .hero-inner {
   position: relative;
   z-index: 2;
+  /* ensure it fills the flex child so content sits above overlay */
+  width: 100%;
 }
 
 .hero-grid {
@@ -333,7 +328,6 @@ nav.primary {
   .hero-video iframe { width: 190%; height: 190%; }
 }
 
-/* Hero headline — display serif at weight 400 (Wired-style) */
 .hero h1 {
   margin: 0 0 var(--sp-sm);
   font-family: var(--f-display);
@@ -343,6 +337,7 @@ nav.primary {
   letter-spacing: -0.5px;
 }
 
+/* .subtitle used inside both hero and page-hero */
 .subtitle {
   margin: 0 0 var(--sp-md);
   font-family: var(--f-serif);
@@ -352,7 +347,7 @@ nav.primary {
   line-height: 1.65;
 }
 
-/* Chips / research-area tags */
+/* Research-area chips */
 .chips {
   display: flex;
   flex-wrap: wrap;
@@ -367,10 +362,10 @@ nav.primary {
   padding: var(--sp-sm) var(--sp-md);
   border: 1px solid var(--hairline);
   background: var(--canvas);
-  border-radius: 0; /* Wired: square */
+  border-radius: 0;
 }
 
-/* CTA row */
+/* CTA / button rows */
 .cta-row {
   display: flex;
   flex-wrap: wrap;
@@ -378,7 +373,7 @@ nav.primary {
   margin-top: var(--sp-lg);
 }
 
-/* Quick-links panel (hero sidebar) */
+/* Quick-links panel in hero sidebar */
 .panel {
   border: 1px solid var(--hairline);
   background: var(--canvas);
@@ -392,6 +387,25 @@ nav.primary {
   letter-spacing: 0.6px;
   text-transform: uppercase;
 }
+/* panel contact sub-block */
+.panel-contact {
+  margin-top: var(--sp-md);
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--sp-md);
+  font-family: var(--f-sans);
+  font-size: var(--t-sm-ui);
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+.panel-contact a {
+  border-bottom: 1px solid var(--hairline);
+  padding-bottom: 1px;
+}
+.panel-contact a:hover {
+  border-bottom-color: var(--ink);
+  text-decoration: none;
+}
+
 .list {
   margin: 0;
   padding-left: var(--sp-lg);
@@ -404,10 +418,7 @@ nav.primary {
   border-bottom: 1px solid var(--hairline);
   padding-bottom: 1px;
 }
-.list a:hover {
-  border-bottom-color: var(--ink);
-  text-decoration: none;
-}
+.list a:hover { border-bottom-color: var(--ink); text-decoration: none; }
 
 /* ============================================================
    Buttons
@@ -417,13 +428,13 @@ nav.primary {
   align-items: center;
   gap: var(--sp-sm);
   padding: var(--sp-md) var(--sp-xl);
-  border: 1px solid var(--ink);  /* Wired: always outlined with ink */
+  border: 1px solid var(--ink);
   background: var(--canvas);
   font-family: var(--f-sans);
   font-weight: 700;
   font-size: var(--t-btn);
   letter-spacing: 0.3px;
-  border-radius: 0;              /* Wired: no rounding */
+  border-radius: 0;
   cursor: pointer;
   transition: background 0.1s, color 0.1s;
 }
@@ -432,7 +443,6 @@ nav.primary {
   background: var(--ink);
   color: var(--canvas);
 }
-
 .btn.primary {
   background: var(--ink);
   color: var(--canvas);
@@ -489,7 +499,19 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
 }
 
 /* ============================================================
-   Cards (generic)
+   Index page sections (Roles, Selected Papers)
+   — these use <section class="block" id="roles/selected">
+   — scoped so they DON'T get advising-block styling
+   ============================================================ */
+section.block {
+  padding: var(--sp-3xl) 0;
+  border-top: 1px solid var(--hairline);
+  background: var(--canvas);
+  /* NO border, NO margin-top — those belong to .advising-block */
+}
+
+/* ============================================================
+   Cards (generic — Selected Papers)
    ============================================================ */
 .card {
   border: 1px solid var(--hairline);
@@ -507,9 +529,9 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
   align-items: center;
   justify-content: space-between;
   gap: var(--sp-sm);
+  flex-wrap: wrap;
 }
 
-/* Topic tag inside card header */
 .tagline {
   font-family: var(--f-sans);
   font-size: var(--t-sm-ui);
@@ -524,7 +546,6 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
   border-radius: 0;
 }
 
-/* Callout block inside card */
 .callout {
   border: 1px solid var(--hairline);
   background: var(--canvas-soft);
@@ -562,7 +583,7 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
 .bullets li { margin: var(--sp-sm) 0; }
 
 /* ============================================================
-   Papers (selected + publications)
+   Papers (Selected Papers + Publications)
    ============================================================ */
 .paper {
   padding: var(--sp-md) 0;
@@ -599,7 +620,7 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
 }
 
 /* ============================================================
-   Roles (index page)
+   Roles & Affiliations (index)
    ============================================================ */
 .roles-grid {
   display: grid;
@@ -610,17 +631,14 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
 @media (max-width: 980px) { .roles-grid { grid-template-columns: 1fr; } }
 
 .role {
-  border: 0;
   border-top: 1px solid var(--hairline);
   padding: var(--sp-md) 0;
-  margin-bottom: 0;
 }
 .role:first-child { border-top: 0; padding-top: 0; }
 .role .t {
   font-family: var(--f-sans);
   font-weight: 700;
   font-size: var(--t-sm-ui);
-  letter-spacing: -0.1px;
 }
 .role .m {
   font-family: var(--f-sans);
@@ -683,9 +701,10 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
 .year-block .paper:first-of-type { border-top: 0; padding-top: var(--sp-md); }
 
 /* ============================================================
-   Advising blocks
+   Advising page — advisor block container
+   (deliberately a different class from section.block)
    ============================================================ */
-.block {
+.advising-block {
   border: 1px solid var(--hairline);
   background: var(--canvas);
   margin-top: var(--sp-lg);
@@ -743,10 +762,9 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
   line-height: 1.5;
 }
 .cell b { color: var(--ink); }
-
 .star { font-weight: 800; color: var(--ink); }
 
-@media (max-width: 980px) { .row { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .row { grid-template-columns: 1fr; } }
 
 /* ============================================================
    Policy Writing (Vox) page
@@ -762,7 +780,7 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
   letter-spacing: 0.6px;
   padding: var(--sp-xxs) var(--sp-sm);
   border: 1px solid currentColor;
-  border-radius: 0; /* Wired: square */
+  border-radius: 0;
   margin-bottom: var(--sp-sm);
 }
 .badge-voxeu    { color: #2b5be8; background: rgba(43,91,232,.06); }
@@ -772,8 +790,7 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
 .badge-nber     { color: #b5451b; background: rgba(181,69,27,.06); }
 
 .vox-article {
-  border: 0;
-  border-top: 1px solid var(--hairline); /* Wired story-row style */
+  border-top: 1px solid var(--hairline);
   padding: var(--sp-lg) 0;
   background: var(--canvas);
 }
@@ -794,7 +811,6 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
   border-bottom-color: var(--ink);
   text-decoration: none;
 }
-
 .vox-meta {
   font-family: var(--f-sans);
   font-size: var(--t-sm-ui);
@@ -802,7 +818,6 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
   margin-bottom: var(--sp-sm);
   letter-spacing: 0.2px;
 }
-
 .vox-desc {
   font-family: var(--f-serif);
   font-size: var(--t-body);
@@ -810,7 +825,6 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
   line-height: 1.65;
   margin: 0 0 var(--sp-sm);
 }
-
 .paper-link {
   display: inline-flex;
   align-items: center;
@@ -826,13 +840,9 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
 .paper-link:hover { border-bottom-color: var(--link); text-decoration: none; }
 
 /* ============================================================
-   Teaching page (bare-bones, styled to match)
+   Teaching page
    ============================================================ */
-.teaching-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
+.teaching-list { list-style: none; margin: 0; padding: 0; }
 .teaching-list li {
   padding: var(--sp-md) 0;
   border-top: 1px solid var(--hairline);
@@ -846,18 +856,18 @@ main { padding: var(--sp-3xl) 0 var(--sp-xl); }
    Footer
    ============================================================ */
 footer {
-  padding: var(--sp-4xl) 0 var(--sp-4xl);
+  padding: var(--sp-4xl) 0;
   border-top: 1px solid var(--hairline);
-  background: var(--ink);        /* Wired: black footer */
-  color: rgba(255,255,255,0.7);
+  background: var(--ink);
+  color: rgba(255,255,255,.7);
   font-family: var(--f-sans);
   font-weight: 400;
   font-size: var(--t-sm-ui);
   letter-spacing: 0.4px;
   text-align: center;
 }
-footer a { color: rgba(255,255,255,0.55); }
-footer a:hover { color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.4); }
+footer a { color: rgba(255,255,255,.55); }
+footer a:hover { color: #fff; text-decoration: none; }
 
 /* ============================================================
    Focus / accessibility
@@ -868,24 +878,35 @@ footer a:hover { color: #fff; text-decoration: none; border-bottom: 1px solid rg
 }
 
 /* ============================================================
-   Mobile refinements ≤ 600px
+   Mobile ≤ 600px
    ============================================================ */
 @media (max-width: 600px) {
-  .brand           { min-width: 0; }
+  /* Tighter side margin */
   .wrap,
   .nav-bar,
-  .menu-panel      { width: calc(100% - 28px); }
+  .menu-panel { width: calc(100% - 24px); }
+
+  /* Button rows stack vertically */
   .cta-row,
   .btn-row,
-  .top-actions     { flex-direction: column; }
+  .top-actions { flex-direction: column; }
   .cta-row .btn,
   .btn-row .btn,
-  .top-actions .btn{ width: 100%; justify-content: center; }
-  .block-head      { flex-direction: column; align-items: flex-start; gap: var(--sp-xs); }
-  .year-head       { flex-direction: column; align-items: flex-start; gap: 2px; }
-  .card h3         { flex-direction: column; align-items: flex-start; }
-  .tagline         { white-space: normal; font-size: 0.82rem; }
-  .chip            { font-size: 0.82rem; padding: var(--sp-xs) var(--sp-sm); }
+  .top-actions .btn { width: 100%; justify-content: center; }
+
+  /* Block / year heads stack */
+  .block-head { flex-direction: column; align-items: flex-start; gap: var(--sp-xs); }
+  .year-head  { flex-direction: column; align-items: flex-start; gap: 2px; }
+
+  /* Card headers allow wrapping */
+  .card h3  { flex-direction: column; align-items: flex-start; }
+  .tagline  { white-space: normal; font-size: 0.82rem; }
+
+  /* Chips smaller */
+  .chip { font-size: 0.82rem; padding: var(--sp-xs) var(--sp-sm); }
+
+  /* Hero video wider on small screens */
+  .hero-video iframe { width: 300%; height: 300%; }
 }
 
 /* ============================================================
