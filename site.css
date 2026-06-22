@@ -272,49 +272,15 @@ nav.primary {
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 60vh;
   display: flex;
   align-items: flex-end;
-  /* vertical padding kept; horizontal matches gutter so .wrap isn't flush */
   padding: calc(84px + var(--sp-4xl)) var(--gutter) var(--sp-4xl);
   border-bottom: 1px solid var(--hairline);
-  overflow: hidden;
-}
-
-/* The video wrapper MUST have class="hero-video" in the HTML */
-.hero-video {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  background: var(--canvas-soft);
-}
-.hero-video iframe {
-  position: absolute;
-  top: 50%; left: 50%;
-  /* 16:9 cover: whichever dimension is the constraint, the other overshoots */
-  width: max(100vw, calc(100vh * 16 / 9));
-  height: max(100vh, calc(100vw * 9 / 16));
-  transform: translate(-50%,-50%);
-  border: 0;
-}
-
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,.6),
-    rgba(255,255,255,.92) 70%,
-    rgba(255,255,255,.98)
-  );
-  pointer-events: none;
+  background: var(--canvas);
 }
 
 .hero-inner {
-  position: relative;
-  z-index: 2;
   width: 100%;
 }
 
