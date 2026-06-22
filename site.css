@@ -237,7 +237,7 @@ nav.primary {
    Page hero (Advising, Publications, Vox, Teaching)
    ============================================================ */
 .page-hero {
-  padding: calc(84px + var(--sp-4xl)) 0 var(--sp-3xl);
+  padding: calc(84px + var(--sp-4xl)) var(--gutter) var(--sp-3xl);
   border-bottom: 1px solid var(--hairline);
   background: var(--canvas);
 }
@@ -273,7 +273,7 @@ nav.primary {
 .hero {
   position: relative;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   padding: calc(70px + var(--sp-lg)) var(--gutter) var(--sp-3xl);
   border-bottom: 1px solid var(--hairline);
   background: var(--canvas);
@@ -373,12 +373,16 @@ nav.primary {
 
 .list {
   margin: 0;
-  padding-left: var(--sp-lg);
+  padding: 0;
+  list-style: none;
   font-family: var(--f-sans);
   font-size: var(--t-sm-ui);
   color: var(--ink-soft);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm) var(--sp-xl);
 }
-.list li { margin: var(--sp-sm) 0; }
+.list li { margin: 0; }
 .list a {
   border-bottom: 1px solid var(--hairline);
   padding-bottom: 1px;
