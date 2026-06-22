@@ -887,20 +887,20 @@ footer a:hover { color: #fff; text-decoration: none; }
 .quick-links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-sm) var(--sp-xl);
-  margin-top: var(--sp-lg);
-  padding: var(--sp-md) 0;
-  border-top: 1px solid var(--hairline);
+  gap: 8px 24px;
+  margin-top: 16px;
+  padding: 12px 0;
+  border-top: 1px solid #e0e0e0;
 }
 .quick-links a {
-  font-family: var(--f-sans);
-  font-size: var(--t-sm-ui);
+  font-family: Manrope, sans-serif;
+  font-size: 0.875rem;
   font-weight: 700;
-  color: var(--ink-soft);
-  border-bottom: 1px solid var(--hairline);
+  color: #1a1a1a;
+  border-bottom: 1px solid #e0e0e0;
   padding-bottom: 1px;
 }
 .quick-links a:hover {
-  border-bottom-color: var(--ink);
+  border-bottom-color: #000;
   text-decoration: none;
 }
