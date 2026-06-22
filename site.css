@@ -127,7 +127,7 @@ header {
   background: rgba(255,255,255,.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-radius: 999px;
+  border-radius: 0;
 }
 
 .brand {
@@ -181,7 +181,7 @@ nav.primary {
 .link.cta {
   border: 1px solid var(--ink);
   background: var(--canvas);
-  border-radius: 999px;
+  border-radius: 0;
 }
 .link.cta:hover { background: var(--canvas-soft); }
 
@@ -196,7 +196,7 @@ nav.primary {
   font-size: var(--t-sm-ui);
   letter-spacing: 0.4px;
   cursor: pointer;
-  border-radius: 18px;
+  border-radius: 0;
   white-space: nowrap;
 }
 
