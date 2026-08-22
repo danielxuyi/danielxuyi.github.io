@@ -1,6 +1,63 @@
-<body>
-  <!-- Copy the <header> … </header> block verbatim from index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Teaching — Daniel Yi Xu</title>
+  <meta name="description" content="Course materials, syllabi, and lecture notes by Daniel Yi Xu." />
 
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Teaching — Daniel Yi Xu" />
+  <meta property="og:description" content="Course materials, syllabi, and lecture notes by Daniel Yi Xu." />
+  <meta property="og:url" content="https://www.danielyixu.com/teaching.html" />
+  <meta property="og:image" content="https://www.danielyixu.com/profile.jpg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Teaching — Daniel Yi Xu" />
+  <meta name="twitter:description" content="Course materials, syllabi, and lecture notes by Daniel Yi Xu." />
+  <meta name="twitter:image" content="https://www.danielyixu.com/profile.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Manrope:wght@400;700;800&family=Playfair+Display:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+</head>
+
+<body>
+  <!-- NAV -->
+  <header aria-label="Site header">
+    <div class="nav-bar">
+      <div class="brand">
+        <div class="sig" aria-hidden="true"></div>
+        <div><strong>Daniel Yi Xu</strong></div>
+      </div>
+
+      <nav class="primary" aria-label="Primary navigation">
+        <a class="link" href="index.html#about">About</a>
+        <a class="link" href="index.html#selected">Selected Papers</a>
+        <a class="link" href="advising.html">Advising</a>
+        <a class="link" href="teaching.html" aria-current="page">Teaching</a>
+        <a class="link" href="publication.html">Publications</a>
+        <a class="link" href="vox.html">Policy Writing</a>
+        <a class="link cta" href="mailto:daniel.xu@duke.edu">Email</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="menuPanel">
+        Menu <span aria-hidden="true">▾</span>
+      </button>
+    </div>
+
+    <div class="menu-panel" id="menuPanel" role="navigation" aria-label="Mobile navigation">
+      <a href="index.html#about">About</a>
+      <a href="index.html#selected">Selected Papers</a>
+      <a href="advising.html">Advising</a>
+      <a href="teaching.html" aria-current="page">Teaching</a>
+      <a href="publication.html">Publications</a>
+      <a href="vox.html">Policy Writing</a>
+      <a href="mailto:daniel.xu@duke.edu">Email</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
   <section class="page-hero" aria-label="Teaching header">
     <div class="wrap">
       <h1>Teaching</h1>
@@ -19,7 +76,25 @@
       <ul class="teaching-list">
         <li>
           <strong>ECON 613</strong> (Spring 2026) —
-          <a href="https://github.com/danielxuyi/econ613-spring-2026">Course materials →</a>
+          <a href="https://github.com/danielxuyi/econ613-spring-2026" target="_blank" rel="noopener">Course materials →</a>
+        </li>
+      </ul>
+
+      <div class="section-head" style="margin-top: 32px;">
+        <h2>Lecture Notes</h2>
+        <div class="hint">Topic-organized notes, hosted on Dropbox.</div>
+      </div>
+
+      <ul class="teaching-list">
+        <li>
+          <strong>International Trade</strong> —
+          <!-- TODO: replace href="#" with the Dropbox share link for the International Trade notes folder -->
+          <a href="#" target="_blank" rel="noopener">Dropbox folder →</a>
+        </li>
+        <li>
+          <strong>Industrial Organization: Industry Dynamics</strong> —
+          <!-- TODO: replace href="#" with the Dropbox share link for the IO / Industry Dynamics notes folder -->
+          <a href="#" target="_blank" rel="noopener">Dropbox folder →</a>
         </li>
       </ul>
 
@@ -34,6 +109,40 @@
     </div>
   </main>
 
-  <!-- Copy the <footer> … </footer> block verbatim from index.html -->
-  <!-- Copy the mobile-menu <script> block verbatim from index.html -->
+  <footer>
+    <div>© <span id="y"></span> Daniel Yi Xu · Built with GitHub Pages</div>
+  </footer>
+
+  <script>
+    (function(){
+      const y = document.getElementById("y");
+      if (y) y.textContent = String(new Date().getFullYear());
+
+      const btn = document.getElementById("menuBtn");
+      const panel = document.getElementById("menuPanel");
+
+      function closeMenu(){
+        if (!panel || !btn) return;
+        panel.classList.remove("open");
+        btn.setAttribute("aria-expanded","false");
+      }
+
+      if (btn && panel){
+        btn.addEventListener("click", () => {
+          const open = panel.classList.toggle("open");
+          btn.setAttribute("aria-expanded", String(open));
+        });
+
+        document.addEventListener("click", (e) => {
+          const t = e.target;
+          if (!t) return;
+          const inside = panel.contains(t) || btn.contains(t);
+          if (!inside) closeMenu();
+        });
+
+        panel.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+      }
+    })();
+  </script>
 </body>
+</html>
