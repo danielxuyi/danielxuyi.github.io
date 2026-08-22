@@ -630,7 +630,7 @@ section.block {
 .media-card p {
   padding: var(--sp-md);
   border-top: 1px solid var(--hairline);
-  font-family: var(--f-serif);
+  font-family: var(--f-sans);
   font-size: var(--t-sm-ui);
   color: var(--ink-soft);
   line-height: 1.65;
