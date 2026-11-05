@@ -820,6 +820,8 @@ section.block {
 }
 .teaching-list li:first-child { border-top: 0; }
 .teaching-list strong { font-weight: 800; }
+.teaching-list .topic-list { margin: var(--sp-sm) 0 0; padding-left: 1.5em; }
+.teaching-list .topic-list li { padding: 4px 0; border-top: 0; }
 
 /* ============================================================
    Footer
